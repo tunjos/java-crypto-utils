@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/java-crypto-utils
+    branches:
+      only:
+        - master
+    docker:
+      - image: circleci/openjdk:8-jdk
+#      - image: circleci/openjdk:8-jdk-browsers
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: java-crypto-utils-{{ checksum "pom.xml" }}
+
+      - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: java-crypto-utils-{{ checksum "pom.xml" }}
+
+      - run: mvn test
+
+      - store_test_results:
+          path: target/surefire-reports
+
+      - store_artifacts:
+          path: target/surefire-reports
