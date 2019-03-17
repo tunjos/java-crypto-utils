@@ -208,7 +208,8 @@ public class HashUtils {
      * @throws NoSuchAlgorithmException if the algorithm cannot be found.
      */
     @NotNull
-    public String shaDigestString(@NotNull final String input, @NotNull final HashAlgorithms algorithm) throws NoSuchAlgorithmException {
+    public String shaDigestString(@NotNull final String input, @NotNull final HashAlgorithms algorithm)
+            throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(algorithm.toString());
         final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
@@ -226,7 +227,8 @@ public class HashUtils {
      * @throws IOException              if an I/O error occurs.
      */
     @NotNull
-    public String shaDigestFile(@NotNull final String filePath, @NotNull final HashAlgorithms algorithm) throws NoSuchAlgorithmException, IOException {
+    public String shaDigestFile(@NotNull final String filePath, @NotNull final HashAlgorithms algorithm)
+            throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(algorithm.toString());
 
         try (InputStream is = Files.newInputStream(Paths.get(filePath))) {

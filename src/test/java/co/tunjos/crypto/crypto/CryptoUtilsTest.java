@@ -68,7 +68,8 @@ class CryptoUtilsTest {
     }
 
     @Test
-    void encryptBytesAES256String() throws NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+    void encryptBytesAES256String() throws NoSuchPaddingException, InvalidAlgorithmParameterException,
+            NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
         final String test = "test";
         final CryptoUtils cryptoUtils = CryptoUtils.getInstance();
         final SecretKey secretKey = cryptoUtils.generateAES256Key();
@@ -82,7 +83,8 @@ class CryptoUtilsTest {
     }
 
     @Test
-    void encryptAES256Bytes() throws NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+    void encryptAES256Bytes() throws NoSuchPaddingException, InvalidAlgorithmParameterException,
+            NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
         final String test = "test";
         final CryptoUtils cryptoUtils = CryptoUtils.getInstance();
         final SecretKey secretKey = cryptoUtils.generateAES256Key();
@@ -90,13 +92,15 @@ class CryptoUtilsTest {
         final byte[] initializationVector = new byte[16];
         new SecureRandom().nextBytes(initializationVector);
 
-        final byte[] encryptedBytes = cryptoUtils.encryptAES256Bytes(test.getBytes(StandardCharsets.UTF_8), initializationVector, secretKey);
+        final byte[] encryptedBytes = cryptoUtils.encryptAES256Bytes(
+                test.getBytes(StandardCharsets.UTF_8), initializationVector, secretKey);
 
         assertEquals(16, encryptedBytes.length);
     }
 
     @Test
-    void encryptDecryptAES256String() throws NoSuchPaddingException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+    void encryptDecryptAES256String() throws NoSuchPaddingException, InvalidAlgorithmParameterException,
+            NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
         final String test = "test";
         final CryptoUtils cryptoUtils = CryptoUtils.getInstance();
         final SecretKey secretKey = cryptoUtils.generateAES256Key();
@@ -107,7 +111,8 @@ class CryptoUtilsTest {
         final String encryptedString = cryptoUtils.encryptAES256String(test, initializationVector, secretKey);
 
         final String decryptedString = cryptoUtils.decryptAES256String(encryptedString, initializationVector, secretKey);
-        final byte[] decryptedBytes = cryptoUtils.decryptAES256Bytes(encryptedString.getBytes(StandardCharsets.UTF_8), initializationVector, secretKey);
+        final byte[] decryptedBytes = cryptoUtils.decryptAES256Bytes(encryptedString.getBytes(StandardCharsets.UTF_8),
+                initializationVector, secretKey);
 
         assertEquals("test", decryptedString);
         assertEquals("test", new String(decryptedBytes, StandardCharsets.UTF_8));

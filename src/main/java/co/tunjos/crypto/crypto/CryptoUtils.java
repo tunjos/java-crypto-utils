@@ -42,7 +42,10 @@ public class CryptoUtils {
         return keyGenerator.generateKey();
     }
 
-    public String encryptAES256String(@NotNull final String input, @NotNull byte[] initializationVector, @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+    public String encryptAES256String(@NotNull final String input, @NotNull byte[] initializationVector,
+                                      @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException,
+            NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException,
+            InvalidAlgorithmParameterException {
         IvParameterSpec ivParameterSpec = new IvParameterSpec(initializationVector);
 
         Cipher cipher = Cipher.getInstance(_AES_CBC_PKCS5PADDING);
@@ -52,7 +55,10 @@ public class CryptoUtils {
         return Base64.getEncoder().encodeToString(encryptedBytes);
     }
 
-    public byte[] encryptBytesAES256String(@NotNull final String input, @NotNull byte[] initializationVector, @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+    public byte[] encryptBytesAES256String(@NotNull final String input, @NotNull byte[] initializationVector,
+                                           @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException,
+            NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException,
+            InvalidAlgorithmParameterException {
         IvParameterSpec ivParameterSpec = new IvParameterSpec(initializationVector);
 
         Cipher cipher = Cipher.getInstance(_AES_CBC_PKCS5PADDING);
@@ -61,15 +67,22 @@ public class CryptoUtils {
         return cipher.doFinal(input.getBytes(StandardCharsets.UTF_8));
     }
 
-    public byte[] encryptAES256Bytes(@NotNull final byte[] bytes, @NotNull byte[] initializationVector, @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+    public byte[] encryptAES256Bytes(@NotNull final byte[] bytes, @NotNull byte[] initializationVector,
+                                     @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException,
+            NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException,
+            InvalidAlgorithmParameterException {
         IvParameterSpec ivParameterSpec = new IvParameterSpec(initializationVector);
 
         Cipher cipher = Cipher.getInstance(_AES_CBC_PKCS5PADDING);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivParameterSpec);
+
         return cipher.doFinal(bytes);
     }
 
-    public String decryptAES256String(@NotNull final String input, @NotNull byte[] initializationVector, @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+    public String decryptAES256String(@NotNull final String input, @NotNull byte[] initializationVector,
+                                      @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException,
+            NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException,
+            InvalidAlgorithmParameterException {
         byte[] decodedBytes = Base64.getDecoder().decode(input.getBytes(StandardCharsets.UTF_8));
         IvParameterSpec ivParameterSpec = new IvParameterSpec(initializationVector);
 
@@ -80,12 +93,16 @@ public class CryptoUtils {
         return new String(decryptedBytes, StandardCharsets.UTF_8);
     }
 
-    public byte[] decryptAES256Bytes(@NotNull final byte[] bytes, @NotNull byte[] initializationVector, @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
+    public byte[] decryptAES256Bytes(@NotNull final byte[] bytes, @NotNull byte[] initializationVector,
+                                     @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException,
+            NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException,
+            InvalidAlgorithmParameterException {
         byte[] decodedBytes = Base64.getDecoder().decode(bytes);
         IvParameterSpec ivParameterSpec = new IvParameterSpec(initializationVector);
 
         Cipher cipher = Cipher.getInstance(_AES_CBC_PKCS5PADDING);
         cipher.init(Cipher.DECRYPT_MODE, secretKey, ivParameterSpec);
+
         return cipher.doFinal(decodedBytes);
     }
 }
