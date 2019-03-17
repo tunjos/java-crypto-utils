@@ -45,7 +45,7 @@ public class HashUtils {
      */
     @Deprecated
     @NotNull
-    public String md5DigestString(@NotNull String input) throws NoSuchAlgorithmException {
+    public String md5DigestString(@NotNull final String input) throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_MD5);
         System.out.println(messageDigest.getProvider());
         final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
@@ -63,11 +63,11 @@ public class HashUtils {
      */
     @Deprecated
     @NotNull
-    public String md5DigestFile(@NotNull String filePath) throws NoSuchAlgorithmException, IOException {
+    public String md5DigestFile(@NotNull final String filePath) throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_MD5);
 
-        try (InputStream is = Files.newInputStream(Paths.get(filePath));
-             DigestInputStream digestInputStream = new DigestInputStream(is, messageDigest)) {
+        try (InputStream is = Files.newInputStream(Paths.get(filePath))) {
+            DigestInputStream digestInputStream = new DigestInputStream(is, messageDigest);
             byte[] buffer = new byte[HASH_MD5_FILE_BUFFER_SIZE];
             //noinspection StatementWithEmptyBody
             while (digestInputStream.read(buffer) > 0) {
@@ -89,7 +89,7 @@ public class HashUtils {
      * @throws NoSuchAlgorithmException if the algorithm cannot be found.
      */
     @NotNull
-    public String sha1DigestString(@NotNull String input) throws NoSuchAlgorithmException {
+    public String sha1DigestString(@NotNull final String input) throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA1);
         final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
@@ -105,11 +105,11 @@ public class HashUtils {
      * @throws IOException              if an I/O error occurs.
      */
     @NotNull
-    public String sha1DigestFile(@NotNull String filePath) throws NoSuchAlgorithmException, IOException {
+    public String sha1DigestFile(@NotNull final String filePath) throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA1);
 
-        try (InputStream is = Files.newInputStream(Paths.get(filePath));
-             DigestInputStream digestInputStream = new DigestInputStream(is, messageDigest)) {
+        try (InputStream is = Files.newInputStream(Paths.get(filePath))) {
+            DigestInputStream digestInputStream = new DigestInputStream(is, messageDigest);
             byte[] buffer = new byte[HASH_MD5_FILE_BUFFER_SIZE];
             //noinspection StatementWithEmptyBody
             while (digestInputStream.read(buffer) > 0) {
@@ -131,7 +131,7 @@ public class HashUtils {
      * @throws NoSuchAlgorithmException if the algorithm cannot be found.
      */
     @NotNull
-    public String sha256DigestString(@NotNull String input) throws NoSuchAlgorithmException {
+    public String sha256DigestString(@NotNull final String input) throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA256);
         final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
@@ -147,11 +147,11 @@ public class HashUtils {
      * @throws IOException              if an I/O error occurs.
      */
     @NotNull
-    public String sha256DigestFile(@NotNull String filePath) throws NoSuchAlgorithmException, IOException {
+    public String sha256DigestFile(@NotNull final String filePath) throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA256);
 
-        try (InputStream is = Files.newInputStream(Paths.get(filePath));
-             DigestInputStream digestInputStream = new DigestInputStream(is, messageDigest)) {
+        try (InputStream is = Files.newInputStream(Paths.get(filePath))) {
+            DigestInputStream digestInputStream = new DigestInputStream(is, messageDigest);
             byte[] buffer = new byte[HASH_MD5_FILE_BUFFER_SIZE];
             //noinspection StatementWithEmptyBody
             while (digestInputStream.read(buffer) > 0) {
@@ -173,7 +173,7 @@ public class HashUtils {
      * @throws NoSuchAlgorithmException if the algorithm cannot be found.
      */
     @NotNull
-    public String sha512DigestString(@NotNull String input) throws NoSuchAlgorithmException {
+    public String sha512DigestString(@NotNull final String input) throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA512);
         final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
@@ -189,11 +189,11 @@ public class HashUtils {
      * @throws IOException              if an I/O error occurs.
      */
     @NotNull
-    public String sha512DigestFile(@NotNull String filePath) throws NoSuchAlgorithmException, IOException {
+    public String sha512DigestFile(@NotNull final String filePath) throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA512);
 
-        try (InputStream is = Files.newInputStream(Paths.get(filePath));
-             DigestInputStream digestInputStream = new DigestInputStream(is, messageDigest)) {
+        try (InputStream is = Files.newInputStream(Paths.get(filePath))) {
+            DigestInputStream digestInputStream = new DigestInputStream(is, messageDigest);
             byte[] buffer = new byte[HASH_MD5_FILE_BUFFER_SIZE];
             //noinspection StatementWithEmptyBody
             while (digestInputStream.read(buffer) > 0) {
@@ -216,7 +216,7 @@ public class HashUtils {
      * @throws NoSuchAlgorithmException if the algorithm cannot be found.
      */
     @NotNull
-    public String shaDigestString(@NotNull String input, @NotNull HashAlgorithms algorithm) throws NoSuchAlgorithmException {
+    public String shaDigestString(@NotNull final String input, @NotNull final HashAlgorithms algorithm) throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(algorithm.toString());
         final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
@@ -234,11 +234,11 @@ public class HashUtils {
      * @throws IOException              if an I/O error occurs.
      */
     @NotNull
-    public String shaDigestFile(@NotNull String filePath, @NotNull HashAlgorithms algorithm) throws NoSuchAlgorithmException, IOException {
+    public String shaDigestFile(@NotNull final String filePath, @NotNull final HashAlgorithms algorithm) throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(algorithm.toString());
 
-        try (InputStream is = Files.newInputStream(Paths.get(filePath));
-             DigestInputStream digestInputStream = new DigestInputStream(is, messageDigest)) {
+        try (InputStream is = Files.newInputStream(Paths.get(filePath))) {
+            DigestInputStream digestInputStream = new DigestInputStream(is, messageDigest);
             byte[] buffer = new byte[HASH_MD5_FILE_BUFFER_SIZE];
             //noinspection StatementWithEmptyBody
             while (digestInputStream.read(buffer) > 0) {
