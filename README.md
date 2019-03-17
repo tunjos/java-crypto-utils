@@ -1,5 +1,9 @@
 # Java-Crypto-Utils
 ## Java Cryptographic, Encoding and Hash Utilities
+- **[CryptoUtils.java](https://github.com/tunjos/java-crypto-utils/blob/master/src/main/java/co/tunjos/crypto/crypto/CryptoUtils.java)**
+- **[EncodingUtils.java](https://github.com/tunjos/java-crypto-utils/blob/master/src/main/java/co/tunjos/crypto/encoding/EncodingUtils.java)**
+- **[HashUtils.java](https://github.com/tunjos/java-crypto-utils/blob/master/src/main/java/co/tunjos/crypto/hash/HashUtils.java)**
+
 [![CircleCI](https://circleci.com/gh/tunjos/java-crypto-utils.svg?style=svg)](https://circleci.com/gh/tunjos/java-crypto-utils)  Build: [Maven](https://maven.apache.org/)
 
 Install Maven
