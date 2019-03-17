@@ -72,8 +72,6 @@ public class HashUtils {
             //noinspection StatementWithEmptyBody
             while (digestInputStream.read(buffer) > 0) {
             }
-        } catch (IOException e) {
-            throw e;
         }
 
         byte[] digestBytes = messageDigest.digest();
@@ -114,8 +112,6 @@ public class HashUtils {
             //noinspection StatementWithEmptyBody
             while (digestInputStream.read(buffer) > 0) {
             }
-        } catch (IOException e) {
-            throw e;
         }
 
         byte[] digestBytes = messageDigest.digest();
@@ -156,8 +152,6 @@ public class HashUtils {
             //noinspection StatementWithEmptyBody
             while (digestInputStream.read(buffer) > 0) {
             }
-        } catch (IOException e) {
-            throw e;
         }
 
         byte[] digestBytes = messageDigest.digest();
@@ -198,8 +192,6 @@ public class HashUtils {
             //noinspection StatementWithEmptyBody
             while (digestInputStream.read(buffer) > 0) {
             }
-        } catch (IOException e) {
-            throw e;
         }
 
         byte[] digestBytes = messageDigest.digest();
@@ -243,8 +235,6 @@ public class HashUtils {
             //noinspection StatementWithEmptyBody
             while (digestInputStream.read(buffer) > 0) {
             }
-        } catch (IOException e) {
-            throw e;
         }
 
         byte[] digestBytes = messageDigest.digest();
