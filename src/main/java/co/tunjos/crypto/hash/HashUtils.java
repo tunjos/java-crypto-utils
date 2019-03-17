@@ -12,6 +12,12 @@ import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Java Hash Utilities.
+ *
+ * @author tunjos
+ * @version 1.0
+ */
 public class HashUtils {
     private static final String ALGORITHM_MD5 = "MD5";
     private static final String ALGORITHM_SHA1 = "SHA-1";
@@ -29,13 +35,33 @@ public class HashUtils {
     private HashUtils() {
     }
 
+    /**
+     * Apply the MD5 Hashing algorithm on an input String.
+     * Digest Size: 128 bit
+     *
+     * @param input The input String to apply the MD5 Hashing algorithm on.
+     * @return The hashed MD5 String.
+     * @throws NoSuchAlgorithmException if the algorithm cannot be found.
+     */
+    @Deprecated
     @NotNull
-    public String md5DigestString(@NotNull String string) throws NoSuchAlgorithmException {
+    public String md5DigestString(@NotNull String input) throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_MD5);
-        final byte[] digestBytes = messageDigest.digest(string.getBytes(StandardCharsets.UTF_8));
+        System.out.println(messageDigest.getProvider());
+        final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
     }
 
+    /**
+     * Apply the MD5 Hashing algorithm on an input file.
+     * Digest Size: 128 bit
+     *
+     * @param filePath The path to the file to apply the MD5 Hashing algorithm on.
+     * @return The hashed MD5 result.
+     * @throws NoSuchAlgorithmException if the algorithm cannot be found.
+     * @throws IOException              if an I/O error occurs.
+     */
+    @Deprecated
     @NotNull
     public String md5DigestFile(@NotNull String filePath) throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_MD5);
@@ -54,13 +80,30 @@ public class HashUtils {
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
     }
 
+    /**
+     * Apply the SHA-1 Hashing algorithm on an input String.
+     * Digest Size: 160 bit
+     *
+     * @param input The input String to apply the SHA-1 Hashing algorithm on.
+     * @return The hashed SHA-1 String.
+     * @throws NoSuchAlgorithmException if the algorithm cannot be found.
+     */
     @NotNull
-    public String sha1DigestString(@NotNull String string) throws NoSuchAlgorithmException {
+    public String sha1DigestString(@NotNull String input) throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA1);
-        final byte[] digestBytes = messageDigest.digest(string.getBytes(StandardCharsets.UTF_8));
+        final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
     }
 
+    /**
+     * Apply the SHA-1 Hashing algorithm on an input file.
+     * Digest Size: 160 bit
+     *
+     * @param filePath The path to the file to apply the SHA-1 Hashing algorithm on.
+     * @return The hashed SHA-1 result.
+     * @throws NoSuchAlgorithmException if the algorithm cannot be found.
+     * @throws IOException              if an I/O error occurs.
+     */
     @NotNull
     public String sha1DigestFile(@NotNull String filePath) throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA1);
@@ -79,13 +122,30 @@ public class HashUtils {
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
     }
 
+    /**
+     * Apply the SHA-256 Hashing algorithm on an input String.
+     * Digest Size: 256 bit
+     *
+     * @param input The input String to apply the SHA-256 Hashing algorithm on.
+     * @return The hashed SHA-256 String.
+     * @throws NoSuchAlgorithmException if the algorithm cannot be found.
+     */
     @NotNull
-    public String sha256DigestString(@NotNull String string) throws NoSuchAlgorithmException {
+    public String sha256DigestString(@NotNull String input) throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA256);
-        final byte[] digestBytes = messageDigest.digest(string.getBytes(StandardCharsets.UTF_8));
+        final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
     }
 
+    /**
+     * Apply the SHA-256 Hashing algorithm on an input file.
+     * Digest Size: 256 bit
+     *
+     * @param filePath filePath The path to the file to apply the SHA-256 Hashing algorithm on.
+     * @return The hashed SHA-256 result.
+     * @throws NoSuchAlgorithmException if the algorithm cannot be found.
+     * @throws IOException              if an I/O error occurs.
+     */
     @NotNull
     public String sha256DigestFile(@NotNull String filePath) throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA256);
@@ -104,13 +164,30 @@ public class HashUtils {
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
     }
 
+    /**
+     * Apply the SHA-512 Hashing algorithm on an input String.
+     * Digest Size: 512 bit
+     *
+     * @param input The input String to apply the SHA-512 Hashing algorithm on.
+     * @return The hashed SHA-512 String.
+     * @throws NoSuchAlgorithmException if the algorithm cannot be found.
+     */
     @NotNull
-    public String sha512DigestString(@NotNull String string) throws NoSuchAlgorithmException {
+    public String sha512DigestString(@NotNull String input) throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA512);
-        final byte[] digestBytes = messageDigest.digest(string.getBytes(StandardCharsets.UTF_8));
+        final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
     }
 
+    /**
+     * Apply the SHA-512 Hashing algorithm on an input file.
+     * Digest Size: 512 bit
+     *
+     * @param filePath filePath filePath The path to the file to apply the SHA-512 Hashing algorithm on.
+     * @return The hashed SHA-512 result.
+     * @throws NoSuchAlgorithmException if the algorithm cannot be found.
+     * @throws IOException              if an I/O error occurs.
+     */
     @NotNull
     public String sha512DigestFile(@NotNull String filePath) throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(ALGORITHM_SHA512);
@@ -129,13 +206,33 @@ public class HashUtils {
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
     }
 
+    /**
+     * Apply a SHA- Hashing algorithm on an input String.
+     * Digest Size: Depends on the chosen algorithm
+     *
+     * @param input     The input String to apply the SHA-512 Hashing algorithm on.
+     * @param algorithm The Hash algorithm to use, chosen from {@link HashAlgorithms}
+     * @return The hashed SHA-512 String.
+     * @throws NoSuchAlgorithmException if the algorithm cannot be found.
+     */
     @NotNull
-    public String shaDigestString(@NotNull String string, @NotNull HashAlgorithms algorithm) throws NoSuchAlgorithmException {
+    public String shaDigestString(@NotNull String input, @NotNull HashAlgorithms algorithm) throws NoSuchAlgorithmException {
         final MessageDigest messageDigest = MessageDigest.getInstance(algorithm.toString());
-        final byte[] digestBytes = messageDigest.digest(string.getBytes(StandardCharsets.UTF_8));
+        final byte[] digestBytes = messageDigest.digest(input.getBytes(StandardCharsets.UTF_8));
         return DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
     }
 
+
+    /**
+     * Apply a SHA- Hashing algorithm on an input file.
+     * Digest Size: Depends on the chosen algorithm
+     *
+     * @param filePath  The input String to apply the SHA-512 Hashing algorithm on.
+     * @param algorithm The Hash algorithm to use, chosen from {@link HashAlgorithms}.
+     * @return The hashed SHA-512 result.
+     * @throws NoSuchAlgorithmException if the algorithm cannot be found.
+     * @throws IOException              if an I/O error occurs.
+     */
     @NotNull
     public String shaDigestFile(@NotNull String filePath, @NotNull HashAlgorithms algorithm) throws NoSuchAlgorithmException, IOException {
         final MessageDigest messageDigest = MessageDigest.getInstance(algorithm.toString());
