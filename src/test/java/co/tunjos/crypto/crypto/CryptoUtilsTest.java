@@ -33,6 +33,54 @@ class CryptoUtilsTest {
     }
 
     @Test
+    void generateAESKey256() {
+        final CryptoUtils cryptoUtils = CryptoUtils.getInstance();
+        final SecretKey secretKey;
+        try {
+            secretKey = cryptoUtils.generateAESKey(AesKeySizes.AES_256);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            assert false;
+            return;
+        }
+
+        assertEquals("AES", secretKey.getAlgorithm());
+        assertEquals(32, secretKey.getEncoded().length);
+    }
+
+    @Test
+    void generateAESKey192() {
+        final CryptoUtils cryptoUtils = CryptoUtils.getInstance();
+        final SecretKey secretKey;
+        try {
+            secretKey = cryptoUtils.generateAESKey(AesKeySizes.AES_192);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            assert false;
+            return;
+        }
+
+        assertEquals("AES", secretKey.getAlgorithm());
+        assertEquals(24, secretKey.getEncoded().length);
+    }
+
+    @Test
+    void generateAESKey128() {
+        final CryptoUtils cryptoUtils = CryptoUtils.getInstance();
+        final SecretKey secretKey;
+        try {
+            secretKey = cryptoUtils.generateAESKey(AesKeySizes.AES_128);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            assert false;
+            return;
+        }
+
+        assertEquals("AES", secretKey.getAlgorithm());
+        assertEquals(16, secretKey.getEncoded().length);
+    }
+
+    @Test
     void encryptAES256String() {
         final String test = "test";
         final CryptoUtils cryptoUtils = CryptoUtils.getInstance();

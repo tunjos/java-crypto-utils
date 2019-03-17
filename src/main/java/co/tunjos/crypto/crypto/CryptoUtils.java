@@ -36,10 +36,10 @@ public class CryptoUtils {
         return keyGenerator.generateKey();
     }
 
-    public String generateAESKey(@NotNull final AesKeySizes aesKeySizes) throws NoSuchAlgorithmException {
+    public SecretKey generateAESKey(@NotNull final AesKeySizes aesKeySizes) throws NoSuchAlgorithmException {
         final KeyGenerator keyGenerator = KeyGenerator.getInstance(ALGORITHM_AES);
         keyGenerator.init(aesKeySizes.getKeySize());
-        return ALGORITHM_AES;
+        return keyGenerator.generateKey();
     }
 
     public String encryptAES256String(@NotNull final String input, @NotNull byte[] initializationVector, @NotNull final SecretKey secretKey) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, InvalidAlgorithmParameterException {
