@@ -1,5 +1,5 @@
 # Java-Crypto-Utils
-## Java Cryptographic and Hash Utilities
+## Java Cryptographic, Encoding and Hash Utilities
 [![CircleCI](https://circleci.com/gh/tunjos/java-crypto-utils.svg?style=svg)](https://circleci.com/gh/tunjos/java-crypto-utils)  Build: [Maven](https://maven.apache.org/)
 
 Install Maven
