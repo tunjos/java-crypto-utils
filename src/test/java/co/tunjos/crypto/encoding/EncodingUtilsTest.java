@@ -13,6 +13,7 @@ class EncodingUtilsTest {
         final String test = "test";
         final EncodingUtils encodingUtils = EncodingUtils.getInstance();
         final String encodedString = encodingUtils.based64EncodeBytes(test.getBytes());
+
         assertEquals("dGVzdA==", encodedString);
     }
 
@@ -21,6 +22,7 @@ class EncodingUtilsTest {
         final String test = "test";
         final EncodingUtils encodingUtils = EncodingUtils.getInstance();
         final String encodedString = encodingUtils.based64EncodeString(test);
+
         assertEquals("dGVzdA==", encodedString);
     }
 
@@ -29,6 +31,7 @@ class EncodingUtilsTest {
         final String test = "dGVzdA==";
         final EncodingUtils encodingUtils = EncodingUtils.getInstance();
         final String decodedString = encodingUtils.based64DecodeBytes(test.getBytes());
+
         assertEquals("test", decodedString);
     }
 
@@ -37,36 +40,25 @@ class EncodingUtilsTest {
         final String test = "dGVzdA==";
         final EncodingUtils encodingUtils = EncodingUtils.getInstance();
         final String hash = encodingUtils.based64DecodeString(test);
+
         assertEquals("test", hash);
     }
 
     @Test
-    void urlEncodeString() {
+    void urlEncodeString() throws UnsupportedEncodingException {
         final String test = "https://test.com/test?test=test";
         final EncodingUtils encodingUtils = EncodingUtils.getInstance();
-        final String encodedString;
-        try {
-            encodedString = encodingUtils.urlEncodeString(test);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            assert false;
-            return;
-        }
+        final String encodedString = encodingUtils.urlEncodeString(test);
+
         assertEquals("https%3A%2F%2Ftest.com%2Ftest%3Ftest%3Dtest", encodedString);
     }
 
     @Test
-    void urlDecodeString() {
+    void urlDecodeString() throws UnsupportedEncodingException {
         final String test = "https%3A%2F%2Ftest.com%2Ftest%3Ftest%3Dtest";
         final EncodingUtils encodingUtils = EncodingUtils.getInstance();
-        final String decodedString;
-        try {
-            decodedString = encodingUtils.urlDecodeString(test);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-            assert false;
-            return;
-        }
+        final String decodedString = encodingUtils.urlDecodeString(test);
+
         assertEquals("https://test.com/test?test=test", decodedString);
     }
 }
